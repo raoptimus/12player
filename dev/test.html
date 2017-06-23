@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <link href="skin/tcdark/css/normalise.min.css" rel="stylesheet">
+    <link href="skin/tcdark/css/font.css" rel="stylesheet">
+    <link href="skin/tcdark/css/main.css" rel="stylesheet">
+    <script src="tc-core-1.11.1.js"></script>
+    <script src="tc-mcore-1.4.3.js"></script>
+    <script src="tc-ex.js"></script>
+    <script src="tc-tcplayer.js?123332"></script>
+    <script src="tc-player-ads.js"></script>
+</head>
+<body>
+<div id="videoObject"></div>
+<script>var $ = $tc;
+var options = {ads: {url: "http://xf.kinorama.tv",preroll: "7c323539377c343536",postroll: "7c33313938307c343536",overlay: "7c3834317c343536",pauseroll: "7c3833397c343536"},path: "http://cdn.12player.tv/last",containerId: "videoObject",hideControls: true,autoStart: false,defaultPlayer: "html5",preload: false,debug: true,streamingParam: "start",playlist: [{"introImage": "http://i10-2.kinorama.tv/64/89/6489/640x480/0000000070.jpg","videos": {"320p": {"fileUrl": "//kinorama.tv/VideoFile.php?id=6489&hq=low&ex=mp4","pageUrl": "","isDefault": true}}}]};
+window.DEBUG = options.debug;
+var $player = $("#" + options.containerId).tcPlayer(options);
+</script>
+</body>
+</html>

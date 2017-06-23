@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <script charset="utf-8" src="tc-core-1.11.1.js"></script>
+    <script charset="utf-8" src="tc-mcore-1.4.3.js"></script>
+    <script charset="utf-8" src="tc-ex.js"></script>
+    <style type="text/css">
+        body {
+            margin: auto;
+        }
+    </style>
+    <link href="http://12player.tv/dev/skin/tcdark/css/normalise.min.css" rel="stylesheet">
+    <link href="http://12player.tv/dev/skin/tcdark/css/font.css" rel="stylesheet">
+    <link href="http://12player.tv/dev/skin/tcdark/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+<script>
+    window.DEBUG = true;
+    var $ = $tc;
+</script>
+<fieldset id="player" style="display: none;">
+    <legend>Плеер</legend>
+    <div id="flashcontent" style="background-color:#000; width: 937px; height: 520px;">
+
+    </div>
+</fieldset>
+<br>
+
+<fieldset id="cfg">
+    <legend>Конфигурация плеера</legend>
+    <br>
+    <fieldset>
+        <legend>Основные параметры</legend>
+        <p>
+            <label> Плеер по-умолчанию (по-возможности)
+                <select id="defaultPlayer">
+                    <option value="auto" selected>Auto</option>
+                    <option value="html5">Html5 player</option>
+                    <option value="flash" >Flash player</option>
+                </select>
+            </label>
+        </p>
+        <p><label><input type="checkbox" id="autoStart"> Автоплей</label></p>
+        <p><label><input type="checkbox" id="hideControls"> Скрывать управление</label></p>
+        <p><label><input type="checkbox" id="preload"> Включить прелоад видео (метаданные о видео будут запрошены сразу)</label></p>
+        <p><label><input type="checkbox" id="debug" checked> Включить debug режим (будет писаться отладочная информация в консоль браузера)</label></p>
+        <p><label>Параметр для псевдостриминга <input type="text" value="start" id="streamingParam"></label></p>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Watermark</legend>
+        <p>
+            <label> Ссылка на логотип (картинка)
+            <input style="width: 600px" type="text" value="http://tubecontext.com/images/logo41.png" id="watermark_logoUrl" />
+            </label>
+        </p>
+        <p>
+            <label> Ссылка для перехода
+                <input style="width: 600px" type="text" value="http://tubecontext.com" id="watermark_url" />
+            </label>
+        </p>
+        <p>
+            <label> Расположение:
+            Top <input style="width: 40px" type="text" value="0" id="watermark_top" />
+            Right <input style="width: 40px" type="text" value="0" id="watermark_right" />
+            Bottom <input style="width: 40px" type="text" value="10" id="watermark_bottom" />
+            Left <input style="width: 40px" type="text" value="10" id="watermark_left" />
+            </label>
+        </p>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Плейлист (первое видео)</legend>
+        <p>
+            <label> Ссылка на скриншот
+                <input style="width: 600px" type="text" value="http://i10-2.kinorama.tv/74/67/7467/640x480/0000000024.jpg" id="introImage" />
+            </label>
+
+            <fieldset>
+                <legend>320p (по-дефолту)</legend>
+                <p>
+                    <label> Ссылка на видео файл
+                        <input style="width: 800px" type="text" value="rtmp://212.83.173.99:1903/2/stream?key=FWHLJFA9" id="playlist_videos_320p_fileUrl" />
+                    </label>
+                </p>
+                <p>
+                    <label> Ссылка на страницу перехода (вместо видео файла)
+                        <input style="width: 600px" type="text" value="" id="playlist_videos_320p_pageUrl" />
+                    </label>
+                </p>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>480p</legend>
+                <p>
+                    <label> Ссылка на видео файл
+                        <input style="width: 800px" type="text" value="http://ss10.kinorama.tv/1d/65bfa/fa28141b5d36f1d9e0b8/1d65bfa28141b5d36f1d9e0b8c3a463d.mp4" id="playlist_videos_480p_fileUrl" />
+                    </label>
+                </p>
+                <p>
+                    <label> Ссылка на страницу перехода (вместо видео файла)
+                        <input style="width: 600px" type="text" value="" id="playlist_videos_480p_pageUrl" />
+                    </label>
+                </p>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>720p</legend>
+                <p>
+                    <label> Ссылка на видео файл
+                        <input style="width: 800px" type="text" value="" id="playlist_videos_720p_fileUrl" />
+                    </label>
+                </p>
+                <p>
+                    <label> Ссылка на страницу перехода (вместо видео файла)
+                        <input style="width: 600px" type="text" value="http://kinorama.tv/" id="playlist_videos_720p_pageUrl" />
+                    </label>
+                </p>
+            </fieldset>
+    </fieldset>
+    <p><button id="createPlayer">Создать плеер</button></p>
+</fieldset>
+<script src="tc-player-loader.js?1"></script>
+<script>
+    $("#createPlayer").click(function() {
+        $("#flashcontent").find("*").remove();
+        window.DEBUG = $('#debug').is(":checked");
+
+        var options = {
+            ads: {
+                url: "http://xf.tubecontext.com",
+                preroll: "7c323738327c36",
+                postroll: "7c31393638377c36",
+                overlay: "7c377c36",
+                pauseroll: "7c347c36"
+            },
+            //path: "http://12player.tv/dev",
+            //path: "http://cdn.12player.tv/last",
+            containerId: "flashcontent",
+            hideControls: $('#hideControls').is(":checked"),
+            autoStart: $('#autoStart').is(":checked"),
+            error: "Видео временно недоступно или удалено. Попробуйте посмотреть его позже.",
+            defaultPlayer: $("#defaultPlayer").val(),
+            preload: $('#preload').is(":checked"),
+            debug: $('#debug').is(":checked"),
+            streamingParam: $("#streamingParam").val(),
+            watermark: {
+                logoUrl: $("#watermark_logoUrl").val(),
+                url: $("#watermark_url").val(),
+                top: +$("#watermark_top").val(),
+                right: +$("#watermark_right").val(),
+                bottom: +$("#watermark_bottom").val(),
+                left: +$("#watermark_left").val()
+            },
+            htmlOptions: {
+            },
+            flashParams: {
+            },
+            flashVars: {
+            },
+            playlist: [
+                {
+                    "introImage": $("#introImage").val(),
+                    "videos": {
+                        "320p": {
+                            "fileUrl": $("#playlist_videos_320p_fileUrl").val(),
+                            "pageUrl": $("#playlist_videos_320p_pageUrl").val(),
+                            "isDefault": true
+                        },
+                        "480p": {
+                            "fileUrl": $("#playlist_videos_480p_fileUrl").val(),
+                            "pageUrl": $("#playlist_videos_480p_pageUrl").val()
+                        },
+                        "720p": {
+                            "fileUrl": $("#playlist_videos_720p_fileUrl").val(),
+                            "pageUrl": $("#playlist_videos_720p_pageUrl").val()
+                        }
+                    }
+                }
+            ]
+        };
+        var player = $_tc.player(options);
+
+        $("#player").show();//.find("legend").text(options.defaultPlayer + " плеер");
+//        document.location.hash = "";
+//        document.location.hash = "player";
+//        $(window).unload(function() {
+//            document.location.hash = "";
+//        });
+    }).click();
+</script>
+</body>
+</html>

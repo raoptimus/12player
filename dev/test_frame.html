@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div-that-holds-the-iframe"></div>
+<script>
+    //doesn't block the load event
+    function createIframe(){
+        var ifr = document.createElement("iframe");
+        ifr.frameBorder = 0;
+        ifr.scrolling = "no";
+        ifr.vspace = 0;
+        ifr.hspace = 0;
+        ifr.marginwidth = 0;
+        ifr.marginheight = 0;
+        ifr.src = "";
+        ifr.id = "sfsddd";
+        ifr.style.width = "300px";
+        ifr.style.height = "300px";
+        ifr.setAttribute("allowfullscreen", "");
+        document.getElementById("div-that-holds-the-iframe").appendChild(ifr);
+        ifr.contentDocument.write("<html></html>");
+    };
+    //createIframe();
+
+    // Check for browser support of event handling capability
+    if (window.addEventListener)
+        window.addEventListener("load", createIframe, false);
+    else if (window.attachEvent)
+        window.attachEvent("onload", createIframe);
+    else window.onload = createIframe;
+
+</script>
+</body>
+</html>

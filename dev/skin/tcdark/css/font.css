@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'tcdark';
+
+    src: url('../fonts/tcdark.svg') format('svg'),
+         url('../fonts/tcdark.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/tcdark.woff') format('woff'),
+         url('../fonts/tcdark.ttf') format('truetype');
+}
+
+[class^="h5vp-icon-"], [class*=" h5vp-icon-"] {
+    font-family: 'tcdark';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    opacity: 0.7;
+    filter: alpha(Opacity=70);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+[class^="h5vp-icon-"]:hover {
+    opacity: 1;
+    filter: alpha(Opacity=100);
+}
+.h5vp-icon-spinner:before {
+    content: "\e611";
+}
+.h5vp-icon-expand:before {
+    content: "\e601";
+}
+.h5vp-icon-contract:before {
+    content: "\e602";
+}
+.h5vp-icon-expand2:before {
+    content: "\e603";
+}
+.h5vp-icon-contract2:before {
+    content: "\e604";
+}
+.h5vp-icon-cog:before {
+    content: "\e605";
+}
+.h5vp-icon-warning:before {
+    content: "\e606";
+}
+.h5vp-icon-checkmark:before {
+    content: "\e607";
+}
+.h5vp-icon-play:before {
+    content: "\e608";
+}
+.h5vp-icon-pause:before {
+    content: "\e609";
+}
+.h5vp-icon-stop:before {
+    content: "\e60a";
+}
+.h5vp-icon-backward:before {
+    content: "\e60b";
+}
+.h5vp-icon-forward:before {
+    content: "\e60c";
+}
+.h5vp-icon-first:before {
+    content: "\e60d";
+}
+.h5vp-icon-last:before {
+    content: "\e60e";
+}
+.h5vp-icon-previous:before {
+    content: "\e60f";
+}
+.h5vp-icon-next:before {
+    content: "\e610";
+}
+.h5vp-icon-volume-high:before {
+    content: "\e612";
+}
+.h5vp-icon-volume-medium:before {
+    content: "\e613";
+}
+.h5vp-icon-volume-low:before {
+    content: "\e614";
+}
+.h5vp-icon-volume-mute:before {
+    content: "\e615";
+}
+.h5vp-icon-volume-increase:before {
+    content: "\e616";
+}
+.h5vp-icon-volume-decrease:before {
+    content: "\e617";
+}
+.h5vp-icon-loop:before {
+    content: "\e618";
+}
+.h5vp-icon-loop2:before {
+    content: "\e619";
+}
+.h5vp-icon-loop3:before {
+    content: "\e61a";
+}
+.h5vp-icon-shuffle:before {
+    content: "\e61b";
+}
+.h5vp-icon-loader1-00:before {
+    content: "\e61f";
+}
+.h5vp-icon-loader1-01:before {
+    content: "\e620";
+}
+.h5vp-icon-loader1-02:before {
+    content: "\e600";
+}
+.h5vp-icon-loader1-03:before {
+    content: "\e621";
+}
+.h5vp-icon-loader1-04:before {
+    content: "\e622";
+}
+.h5vp-icon-loader1-05:before {
+    content: "\e623";
+}
+.h5vp-icon-loader1-06:before {
+    content: "\e624";
+}
+.h5vp-icon-loader1-07:before {
+    content: "\e625";
+}
